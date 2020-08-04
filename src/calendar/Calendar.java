@@ -23,28 +23,40 @@ public class Calendar {
 				System.out.println();
 			}
 		}
+		System.out.println();
+		System.out.println();
 	}
 
 	public static void main(String[] args) {
 
-		// 숫자 입력받아 해당 월 일수 출력
+		String PROMPT = "cal> ";
 		Scanner sc = new Scanner(System.in);
 		Calendar cal = new Calendar();
-		
-		// 반복할 횟수 입력
-		System.out.println("반복할 횟수를 입력하세요.");
-		int num = sc.nextInt();
-		
+
+		// 반복할 횟수 입력 = for문 사용할 때 필요한 코드 
+		/*
+		 * System.out.println("반복할 횟수를 입력하세요."); int num = sc.nextInt();
+		 */
+
 		// 강의에서 쓴 array version + loop
-		for (int i = 0; i < num; i++) {
-			System.out.println("월을 입력해주세요.");
-			int month = sc.nextInt();
-			
+		int month = 0;
+		
+		while (true) {
+			System.out.println("월을 입력해주세요. (종료하려면 -1을 입력하세요)");
+			System.out.print(PROMPT);
+			month = sc.nextInt();
+			if(month==-1) 
+				break;
+			if (month<1 || month> day.length) {
+				System.out.println("입력 오류입니다.");
+				System.out.println();
+				continue;
+			}
 			System.out.printf("%d월은 %d일 까지 있습니다.", month, cal.getMaxDaysOfMonth(month));
 			System.out.println();
-			cal.printSampleCalendar(month);			
-			System.out.println();
+			cal.printSampleCalendar(month);
 		}
+		System.out.println();
 		System.out.println("Bye~");
 
 		// 조건문 활용한 코드
