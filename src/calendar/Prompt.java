@@ -10,7 +10,6 @@ public class Prompt {
 
 		int year;
 		int month;
-		String day;
 
 		while (true) {
 			System.out.println("년도를 입력해주세요. (종료하려면 -1을 입력하세요)");
@@ -21,9 +20,6 @@ public class Prompt {
 			System.out.println("월을 입력해주세요.");
 			System.out.print("month=> ");
 			month = sc.nextInt();
-			System.out.println("첫번째 요일을 입력해주세요. (SU, MO, TU, WE, TH, FR, SA)");
-			System.out.print("day=> ");
-			day = sc.next();
 			System.out.println();
 
 			if (month < 1 || month > 12 || year < 0) {
@@ -32,7 +28,7 @@ public class Prompt {
 				continue;
 			}
 
-			cal.printCalendar(year, month, day);
+			cal.printCalendar(year, month);
 		}
 		System.out.println();
 		System.out.println("Bye~");
