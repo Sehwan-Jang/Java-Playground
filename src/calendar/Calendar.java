@@ -1,8 +1,49 @@
 package calendar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+
 public class Calendar {
 	private static final int[] DAY = { 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 	private static final int[] LEAP_DAY = { 31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
+	
+	private HashMap<Date, ArrayList<String>> schedule;
+	private ArrayList<String> list = new ArrayList<String>();
+	
+	public Calendar() {
+		schedule =new HashMap<Date, ArrayList<String>>();
+	}
+	
+	public void registerPlan(String strDate, String plan) {
+		Date date;
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+			if (schedule.containsKey(date)) {
+				list = schedule.get(date);
+				list.add(plan);
+			} else
+				list.add(plan);
+			schedule.put(date, list);		
+		} catch (ParseException e) {
+			e.printStackTrace();
+			System.out.println("에러가 발생했습니다.");
+		}		
+	}
+	
+	public void searchPlan(String strDate) throws ParseException {
+		Date date = new SimpleDateFormat("yyyy-MM-dd").parse(strDate);
+		
+		if (schedule.containsKey(date)) {
+			System.out.println(schedule.get(date).size() + "개의 일정이 있습니다.");
+			for (int i = 0; i < schedule.get(date).size(); i++) {
+				System.out.println((i + 1) + ". " + schedule.get(date).get(i));
+			}
+		} else
+			System.out.println("일정이 없습니다.");
+	}
 
 	public boolean isLeapYear(int year) {
 		if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
@@ -61,4 +102,5 @@ public class Calendar {
 		System.out.println();
 
 	}
+	
 }
