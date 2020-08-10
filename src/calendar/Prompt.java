@@ -1,16 +1,11 @@
 package calendar;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Prompt {
 	private static String PROMPT = "> ";
-	HashMap<String, ArrayList<String>> schedule = new HashMap<String, ArrayList<String>>();
-	ArrayList<String> list = new ArrayList<String>();
 
-	public void runPrompt() throws ParseException {
+	public void runPrompt() {
 		Scanner sc = new Scanner(System.in);
 		Calendar cal = new Calendar();
 
@@ -77,15 +72,15 @@ public class Prompt {
 		cal.printCalendar(year, month);
 	}
 
-	private void searchSchedule(Scanner sc, Calendar cal) throws ParseException {
-		System.out.println("[일정 검색] 날짜를 입력하세요.");
+	private void searchSchedule(Scanner sc, Calendar cal){
+		System.out.println("[일정 검색] 날짜를 입력하세요  (yyyy-MM-dd).");
 		System.out.print(PROMPT);
 		sc.nextLine();
 		String date = sc.next();
 		cal.searchPlan(date);
 	}
 
-	private void cmdRegister(Scanner sc, Calendar cal) throws ParseException {
+	private void cmdRegister(Scanner sc, Calendar cal) {
 		System.out.println("[새 일정 등록] 날짜를 입력하세요 (yyyy-MM-dd).");
 		System.out.print(PROMPT);
 		String date = sc.next();
@@ -97,8 +92,10 @@ public class Prompt {
 		System.out.println(plan + " 일정이 등록되었습니다.");
 	}
 
-	public static void main(String[] args) throws ParseException {
+	public static void main(String[] args) {
 		Prompt prompt = new Prompt();
 		prompt.runPrompt();
 	}
+	
+	
 }
